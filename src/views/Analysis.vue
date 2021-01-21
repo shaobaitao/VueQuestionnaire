@@ -24,8 +24,8 @@
                     width="180">
                 </el-table-column>
                 <el-table-column
-                    prop="percent"
-                    label="比例%">
+                    :formatter="percentFormatter"
+                    label="比例">
                 </el-table-column>
             </el-table>
         </el-card>
@@ -41,85 +41,6 @@ export default {
     data() {
         return {
             analysis: [],
-            fakeData: [
-                {
-                    qID: 1,
-                    options: [{
-                        count: 1,
-                        option: "v-on",
-                        percent: 10
-                    }, {
-                        count: 2,
-                        option: "v-model",
-                        percent: 20
-                    }, {
-                        count: 3,
-                        option: "v-bind",
-                        percent: 30
-                    }, {
-                        count: 4,
-                        option: "v-html",
-                        percent: 40
-                    }],
-                    qTitle: "Vue.js用于监听 DOM 事件的指令是:",
-                    type: "radio"
-                },
-                {
-                    qID: 1,
-                    options: [
-                        {
-                            count: 1,
-                            option: "v-on",
-                            percent: 10
-                        },
-                        {
-                            count: 2,
-                            option: "v-model",
-                            percent: 20
-                        },
-                        {
-                            count: 3,
-                            option: "v-bind",
-                            percent: 30
-                        },
-                        {
-                            count: 4,
-                            option: "v-html",
-                            percent: 40
-                        }
-                    ],
-                    qTitle: "Vue.js用于监听 DOM 事件的指令是:",
-                    type: "radio"
-                },
-                {
-                    qID: 1,
-                    options: [
-                        {
-                            count: 1,
-                            option: "v-on",
-                            percent: 10
-                        },
-                        {
-                            count: 2,
-                            option: "v-model",
-                            percent: 20
-                        },
-                        {
-                            count: 3,
-                            option: "v-bind",
-                            percent: 30
-                        },
-                        {
-                            count: 4,
-                            option: "v-html",
-                            percent: 40
-                        }
-                    ],
-                    qTitle: "Vue.js用于监听 DOM 事件的指令是:",
-                    type: "radio"
-                },
-            ]
-
         }
     },
     methods: {
@@ -150,7 +71,7 @@ export default {
             }
         },
         getSummaries(param) {
-            const { columns, data } = param;
+            const {columns, data} = param;
 
             const sums = [];
             columns.forEach((column, index) => {
@@ -174,6 +95,9 @@ export default {
                 }
             });
             return sums;
+        },
+        percentFormatter(row){
+            return row.percent+'%'
         }
     },
 
