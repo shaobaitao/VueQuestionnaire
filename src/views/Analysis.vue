@@ -1,5 +1,4 @@
 <template>
-
     <div class="main">
         <el-card class="box-card" v-for="(item,index) in analysis" :key="index">
             <div slot="header" class="clearfix">
@@ -12,17 +11,16 @@
                 stripe
                 :summary-method="getSummaries"
                 show-summary="show-summary"
-                :default-sort = "{prop: 'count', order: 'descending'}"
+                :default-sort="{prop: 'count', order: 'descending'}"
+                fit="fit"
                 style="width: 100%">
                 <el-table-column
                     prop="option"
-                    label="选项"
-                    width="180">
+                    label="选项">
                 </el-table-column>
                 <el-table-column
                     prop="count"
-                    label="计数"
-                    width="180">
+                    label="计数">
                 </el-table-column>
                 <el-table-column
                     :formatter="percentFormatter"
@@ -101,11 +99,11 @@ export default {
 </script>
 
 <style scoped>
+
 .main {
     display: flex;
     justify-content: center;
     align-items: center;
-
     flex-direction: column;
 }
 
@@ -114,5 +112,10 @@ export default {
     margin: 20px;
 }
 
+@media screen and (max-width: 1000px) {
+    .box-card {
+        width: 100%;
+    }
+}
 
 </style>
