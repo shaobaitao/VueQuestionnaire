@@ -33,6 +33,7 @@
 
 <script>
 
+// import {getAnalysis} from "@/request/api";
 
 export default {
 
@@ -44,6 +45,10 @@ export default {
     },
     methods: {
         getAnalysis() {
+          console.log(this.$route.params.id)
+            // getAnalysis({
+            //   id: this.$route.params.id
+            // })
             this.axios.post('api/getAnalysis.php', {
                 id: this.$route.params.id
             })

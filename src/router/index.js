@@ -12,7 +12,9 @@ import Home from "../views/Home";
 import Design from "../views/Design";
 import Thanks from "../views/Thanks";
 import Analysis from "../views/Analysis";
+import routeTest from "../components/routeTest";
 const router =  new VueRouter({
+    // mode: 'history',
     routes:[
         {
             path:"/",
@@ -79,7 +81,13 @@ const router =  new VueRouter({
             meta: {
                 title:'数据分析'
             }
+        }, {
+            path: '/routeTest/:id',
+            name:'analysis',
+            component: routeTest,
+            props: true
         }
+
 
     ]
 })

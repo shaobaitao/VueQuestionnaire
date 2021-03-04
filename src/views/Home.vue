@@ -203,7 +203,7 @@ export default {
 
         },
         sendForm(wjId) {
-            this.sendURL = window.location.origin + "/#/questionnaire/" + wjId;
+            this.sendURL = window.location.origin + "/questionnaire/" + wjId;
             this.sendFormSign = true
             // console.log(window.location.origin + "/#/questionnaire/" + wjId)
         },

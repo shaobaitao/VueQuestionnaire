@@ -1,7 +1,6 @@
 <template>
     <div class="main">
         <div class="content">
-
             <div class="top">
                 <h2 style="margin-top: 40px">{{ title }}</h2>
                 <p style="margin-top: 20px">{{ desc }}</p>
