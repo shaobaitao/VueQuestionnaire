@@ -3,88 +3,79 @@ import VueRouter from "vue-router";
 
 Vue.use(VueRouter)
 // import Home from  '@/views/Home'
-import About from  '@/views/About'
-import questionnaire from "../views/questionnaire";
-import Index from '../views/Index'
-import Login from "../views/Login";
-import Register from "../views/Register";
-import Home from "../views/Home";
-import Design from "../views/Design";
-import Thanks from "../views/Thanks";
-import Analysis from "../views/Analysis";
-import routeTest from "../components/routeTest";
-const router =  new VueRouter({
+
+const router = new VueRouter({
     // mode: 'history',
-    routes:[
+    routes: [
         {
-            path:"/",
-            component:Index,
+            path: "/",
+            component: resolve => require(['@/views/Index'], resolve),
             meta: {
-                title:'问卷首页'
+                title: '问卷首页'
             }
         }, {
-            path:"/index",
-            component:Index,
+            path: "/index",
+            component: resolve => require(['@/views/Index'], resolve),
             meta: {
-                title:'问卷首页'
+                title: '问卷首页'
             }
         }, {
             path: '/about',
-            component:About,
+            component: resolve => require(['@/views/About'], resolve),
             meta: {
-                title:'about页面'
+                title: 'about页面'
             }
         }, {
             path: '/login',
-            component: Login,
+            component: resolve => require(['@/views/Login'], resolve),
             meta: {
-                title:'登录页面'
+                title: '登录页面'
             }
 
         }, {
             path: '/home',
-            component: Home,
+            component: resolve => require(['@/views/Home'], resolve),
             meta: {
-                title:'问卷大厅'
+                title: '问卷大厅'
             }
         }, {
             path: '/register',
-            component: Register,
+            component: resolve => require(['@/views/Register'], resolve),
             meta: {
-                title:'注册页面'
+                title: '注册页面'
             }
         }, {
             path: '/questionnaire/:id',
-            name:'questionnaire',
-            component: questionnaire,
+            name: 'questionnaire',
+            component: resolve => require(['@/views/questionnaire'], resolve),
             meta: {
-                title:'问卷页面'
+                title: '问卷页面'
             }
         }, {
             path: '/design/:id',
-            name:'design',
-            component: Design,
+            name: 'design',
+            component: resolve => require(['@/views/Design'], resolve),
             meta: {
-                title:'设计问卷'
+                title: '设计问卷'
             }
         }, {
             path: '/thanks',
-            name:'thanks',
-            component: Thanks,
+            name: 'thanks',
+            component: resolve => require(['@/views/Thanks'], resolve),
             meta: {
-                title:'感谢页面'
+                title: '感谢页面'
             }
         }, {
             path: '/analysis/:id',
-            name:'analysis',
-            component: Analysis,
+            name: 'analysis',
+            component: resolve => require(['@/views/Analysis'], resolve),
             meta: {
-                title:'数据分析'
+                title: '数据分析'
             }
         }, {
             path: '/routeTest/:id',
-            name:'analysis',
-            component: routeTest,
+            name: 'analysis',
+            component: resolve => require(['@/components/routeTest'], resolve),
             props: true
         }
 
