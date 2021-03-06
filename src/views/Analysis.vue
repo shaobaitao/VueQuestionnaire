@@ -33,10 +33,9 @@
 
 <script>
 
-// import {getAnalysis} from "@/request/api";
+import api from "@/request/api";
 
 export default {
-
   name: "Analysis",
   data() {
     return {
@@ -46,16 +45,12 @@ export default {
   methods: {
     getAnalysis() {
       console.log(this.$route.params.id)
-      // getAnalysis({
-      //   id: this.$route.params.id
-      // })
-      this.axios.post('api/getAnalysis.php', {
+      api.getAnalysis({
         id: this.$route.params.id
       })
-          .then((response) => {
-            this.analysis = response.data
-            // console.log(response.data)
-
+          .then(res => {
+            this.analysis = res.data
+            console.log(res)
           })
     },
     handleOpen(key, keyPath) {

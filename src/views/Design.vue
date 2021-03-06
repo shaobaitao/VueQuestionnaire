@@ -40,7 +40,7 @@
           <el-input v-model="willAddQuestion.title" placeholder="请输入标题"></el-input>
         </el-form-item>
 
-        <template v-if="willAddQuestion.type=='radio'||willAddQuestion.type=='checkbox'">
+        <template v-if="willAddQuestion.type==='radio'||willAddQuestion.type==='checkbox'">
           <el-form-item :label="'选项'+(index+1)" v-for="(item,index) in willAddQuestion.options" :key="index">
             <el-row>
               <el-col :span="16">
@@ -53,7 +53,7 @@
           </el-form-item>
           <el-button type="primary" plain class="addOptionButton" @click="addOption">新增选项</el-button>
         </template>
-        <template v-if="willAddQuestion.type=='text'">
+        <template v-if="willAddQuestion.type==='text'">
           <el-form-item label="填空">
             <el-input type="textarea"
                       :rows="willAddQuestion.row" style="width: 80%" resize="none"></el-input>
@@ -74,6 +74,8 @@
 </template>
 
 <script>
+import api from "@/request/api";
+
 export default {
   name: "questionnaire",
   data() {
@@ -126,15 +128,14 @@ export default {
   },
   methods: {
     getQuestions() {
-      this.axios.post('api/getQuestions.php', {
+      api.getQuestions({
         id: this.$route.params.id
       })
-          .then((response) => {
-            this.title = response.data.title
-            this.desc = response.data.desc
-            this.details = response.data.details
-
-          })
+        .then((response) => {
+          this.title = response.data.title
+          this.desc = response.data.desc
+          this.details = response.data.details
+        })
     },
     addQuestion() {
       this.dialogTitle = '添加题目';
@@ -154,23 +155,23 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.axios.post('api/deleteQuestion.php', {
+        api.deleteQuestion({
           id: id
         })
-            .then((response) => {
-              if (response.data.code !== 200) {
-                this.$message({
-                  message: response.data.msg,
-                  type: 'error'
-                });
-              } else {
-                this.$message({
-                  message: "删除成功！",
-                  type: 'success'
-                });
-                this.getQuestions()
-              }
-            })
+          .then((response) => {
+            if (response.data.code !== 200) {
+              this.$message({
+                message: response.data.msg,
+                type: 'error'
+              });
+            } else {
+              this.$message({
+                message: "删除成功！",
+                type: 'success'
+              });
+              this.getQuestions()
+            }
+          })
       })
     },
     addOption() {
@@ -180,27 +181,25 @@ export default {
       });
     },
     checkAddQuestion() {
-      this.axios.post('api/addQuestion.php', {
+      api.checkAddQuestion({
         form: this.willAddQuestion
       })
-          .then((response) => {
-            console.log(response)
-            if (response.data.code !== 200) {
-              this.$message({
-                message: response.data.msg,
-                type: 'error'
-              });
-            } else {
-              this.$message({
-                message: "添加成功！",
-                type: 'success'
-              });
-            }
-            // console.log(this.willAddQuestion)
-            this.getQuestions()
-          })
+        .then((response) => {
+          console.log(response)
+          if (response.data.code !== 200) {
+            this.$message({
+              message: response.data.msg,
+              type: 'error'
+            });
+          } else {
+            this.$message({
+              message: "添加成功！",
+              type: 'success'
+            });
+          }
+          this.getQuestions()
+        })
       this.dialogShow = false;
-
     }
   },
   mounted() {

@@ -74,7 +74,7 @@ const router = new VueRouter({
             }
         }, {
             path: '/routeTest/:id',
-            name: 'analysis',
+            name: 'routeTest',
             component: resolve => require(['@/components/routeTest'], resolve),
             props: true
         }

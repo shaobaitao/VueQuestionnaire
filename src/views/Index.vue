@@ -17,7 +17,6 @@ name: "Index",
     Topbar
   },
   methods:{
-
     toLogin(){
       this.axios.post('http://vue.shaobaitao.cn/api/login_check.php')
           .then((response) => {

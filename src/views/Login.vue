@@ -31,6 +31,7 @@
 
 <script>
     // import qs from 'qs';
+    import api from "@/request/api";
     export default {
         name: "Login",
         data() {
@@ -59,7 +60,7 @@
         },
         methods: {
             login() {
-                this.axios.post('api/login.php', {
+                api.login({
                     name: this.loginForm.username,
                     pass: this.loginForm.password
                 }).then((response) => {
@@ -79,10 +80,9 @@
                 })
             },
             LoginCheck(){
-                this.axios.post('api/login_check.php')
+                api.loginCheck()
                 .then((response) => {
                     if (response.data.code === "1") {
-
                         this.userName=response.data.username
                         this.$message({
                             message: this.userName+"您已登录！",

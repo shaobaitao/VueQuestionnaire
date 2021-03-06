@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import api from "@/request/api";
+
 export default {
   name: "Register",
   data() {
@@ -81,7 +83,7 @@ export default {
     },
     // 注册
     Register() {
-      this.axios.post('api/register_check.php', {
+      api.registerCheck({
         name: this.registerForm.username,
         pass: this.registerForm.pass,
         phoneNumber: this.registerForm.phoneNumber
@@ -97,11 +99,9 @@ export default {
             message: '您已注册成功! 三秒后跳转登录',
             type: 'success'
           });
-          setTimeout(()=>{
+          setTimeout(() => {
             this.$router.push('/login')
           }, 3000);
-
-
         }
       })
     },
