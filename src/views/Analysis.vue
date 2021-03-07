@@ -1,10 +1,31 @@
 <template>
   <div class="main">
-    <el-card class="box-card" v-for="(item,index) in analysis" :key="index">
+    <el-card class="box-card" v-if="analysis.length===0">
+      <div slot="header" class="clearfix">
+        <span>暂无数据</span>
+      </div>
+      <el-table
+          stripe
+          fit="fit"
+          style="width: 100%">
+        <el-table-column
+            prop="option"
+            label="选项">
+        </el-table-column>
+        <el-table-column
+            prop="count"
+            label="计数">
+        </el-table-column>
+        <el-table-column
+            :formatter="percentFormatter"
+            label="比例">
+        </el-table-column>
+      </el-table>
+    </el-card>
+    <el-card class="box-card" v-else v-for="(item,index) in analysis" :key="index">
       <div slot="header" class="clearfix">
         <span>第{{ parseInt(index) + 1 }}题:{{ item.qTitle }}</span>
         <span style="color: #F56C6C; font-size: 14px">{{ returnType(item.type) }}</span>
-
       </div>
       <el-table
           :data="item.options"
@@ -44,7 +65,7 @@ export default {
   },
   methods: {
     getAnalysis() {
-      console.log(this.$route.params.id)
+      // console.log(this.$route.params.id)
       api.getAnalysis({
         id: this.$route.params.id
       })

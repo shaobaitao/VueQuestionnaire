@@ -33,7 +33,7 @@
       </el-card>
       <el-button type="primary" style="margin: 35px;width: 100px" @click="submitForm">提交</el-button>
       <br>
-      <el-link type="primary">vue.shaobaotao.cn</el-link>
+      <el-link type="primary" style="margin: 35px">vue.shaobaotao.cn</el-link>
       <!--      <el-link type="primary" style="margin: 15px;" href="vue.shaobaotao.cn">vue.shaobaotao.cn</el-link>-->
     </div>
   </div>

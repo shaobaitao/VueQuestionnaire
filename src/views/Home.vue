@@ -6,6 +6,7 @@
         <h2>问卷列表</h2>
         <el-button type="primary" icon="el-icon-plus" @click="dialogShow=true">创建问卷</el-button>
       </div>
+
       <div class="form_item" v-for="(item,index) in formData" :key="index">
         <div class="item-top">
           <div class="pull_left">
@@ -71,6 +72,7 @@
       <el-input v-model="sendURL"></el-input>
       <span slot="footer" class="dialog-footer">
         <el-button v-clipboard:copy="sendURL" v-clipboard:success="clipboardSuccessHandler">复制</el-button>
+        <el-button @click="openLink(sendURL)">打开</el-button>
         <el-button type="primary" @click="sendFormSign = false">确 定</el-button>
       </span>
     </el-dialog>
@@ -197,9 +199,12 @@ export default {
 
     },
     sendForm(wjId) {
-      this.sendURL = window.location.origin + "/questionnaire/" + wjId;
+      this.sendURL = window.location.origin + "/#/questionnaire/" + wjId;
       this.sendFormSign = true
       // console.log(window.location.origin + "/#/questionnaire/" + wjId)
+    },
+    openLink(url) {
+      window.open(url)
     },
     clipboardSuccessHandler() {
       this.$message.success("已复制");
